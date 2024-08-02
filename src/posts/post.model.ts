@@ -1,10 +1,31 @@
-import { Column, Model, Table } from 'sequelize-typescript';
+import {
+  Column,
+  DataType,
+  Model,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
 
-@Table
+@Table({
+  tableName: 'posts',
+  timestamps: false,
+})
 export class PostModel extends Model {
-  @Column
+  @PrimaryKey
+  @Column({
+    autoIncrement: true,
+    unique: true,
+    type: DataType.INTEGER,
+  })
+  id: number;
+
+  @Column({
+    type: DataType.STRING,
+  })
   title: string;
 
-  @Column
+  @Column({
+    type: DataType.STRING,
+  })
   body: string;
 }
